@@ -1,91 +1,159 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 // variables in TS
-var userName = "Pikachu";
+const userName = "Pikachu";
 console.log(userName);
-var userLastName = "Pokemon";
-var userAge = 26;
+const userLastName = "Pokemon";
+const userAge = 26;
 console.log(userName, userLastName, userAge);
 // combine two types
-var year = 20;
+const year = 20;
 // arrays in TS
-var carsArray = ["Audi", "BMW", "Mercedes"];
-var carDetails = ["Audi", "A7", "diesel;", 5604];
-var info = [{ name: "Andrew", age: 27 }, "student", true];
+const carsArray = ["Audi", "BMW", "Mercedes"];
+const carDetails = ["Audi", "A7", "diesel;", 5604];
+const info = [{ name: "Andrew", age: 27 }, "student", true];
 // objects in TS
-var employee1;
+let employee1;
 employee1 = {
     firstName: "John",
     lastName: "Doe",
     age: 25,
     jobTitle: "Surveyor",
 };
-var employee2 = {
+let employee2 = {
     firstName: "Tom",
     lastName: "Moe",
     age: 29,
     jobTitle: "Geodesist",
 };
 // functions in TS
-var findNumber = function (n1, n2, n3) {
+const findNumber = (n1, n2, n3) => {
     return Math.max(n1, n2, n3);
 };
 console.log(findNumber(7, 10, 5));
 // classes in TS
-var Cars = /** @class */ (function () {
-    function Cars(b, m, e, y) {
+class Cars {
+    constructor(b, m, e, y) {
         this.brand = b;
         this.model = m;
         this.engine = e;
         this.year = y;
     }
-    Cars.prototype.format = function () {
-        return "Your car is ".concat(this.brand, " ").concat(this.model, " ").concat(this.engine, " and it's production year is ").concat(this.year);
-    };
-    return Cars;
-}());
-var Houses = /** @class */ (function () {
-    function Houses(city, size, price, description) {
+    format() {
+        return `Your car is ${this.brand} ${this.model} ${this.engine} and it's production year is ${this.year}`;
+    }
+}
+class Houses {
+    constructor(city, size, price, description) {
         this.city = city;
         this.size = size;
         this.price = price;
         this.description = description;
     }
-    Houses.prototype.format = function () {
-        return "City: ".concat(this.city, ", size: ").concat(this.size, " sq. m., price: ").concat(this.price, " Eur, description: ").concat(this.description);
-    };
-    return Houses;
-}());
-var Sites = /** @class */ (function (_super) {
-    __extends(Sites, _super);
-    function Sites(city, size, price, description) {
-        return _super.call(this, city, size, price, description) || this;
+    format() {
+        return `City: ${this.city}, size: ${this.size} sq. m., price: ${this.price} Eur, description: ${this.description}`;
     }
-    Sites.prototype.getSquarePerMeter = function () {
-        var squarePerMeter = Math.round(this.price / this.size);
-        return "Your price square per meter is ".concat(squarePerMeter, " Eur / m2");
-    };
-    return Sites;
-}(Houses));
-var carNo1 = new Cars("VW", "Golf", "1.9 TDI", 2012);
-var houseNo1 = new Houses("Kaunas", 120, 125000, "A spacious home has been placed in the city.");
-var siteNo1 = new Sites("Vilnius", 135, 230000, "A spacious home has been placed in the city.");
+}
+class Sites extends Houses {
+    constructor(city, size, price, description) {
+        super(city, size, price, description);
+    }
+    getSquarePerMeter() {
+        const squarePerMeter = Math.round(this.price / this.size);
+        return `Your price square per meter is ${squarePerMeter} Eur / m2`;
+    }
+}
+const carNo1 = new Cars("VW", "Golf", "1.9 TDI", 2012);
+const houseNo1 = new Houses("Kaunas", 120, 125000, "A spacious home has been placed in the city.");
+const siteNo1 = new Sites("Vilnius", 135, 230000, "A spacious home has been placed in the city.");
 console.log(carNo1);
 console.log(carNo1.format());
 console.log(houseNo1);
 console.log(houseNo1.format());
 console.log(siteNo1.getSquarePerMeter());
+const userNo1 = {
+    userName: "Michael",
+    userLocation: "Porto",
+    userAge: 29,
+};
+const userNo2 = {
+    userName: "Pedro",
+    userLocation: "Santo Tirsa",
+    userAge: 32,
+};
+const userNo3 = {
+    userName: "Andrea",
+    userLocation: "Santo Tirsa",
+    userAge: 27,
+};
+const userNo4 = {
+    userName: "Alex",
+    userLocation: "Porto",
+    userAge: 31,
+};
+const nwoProject = {
+    projectName: "New World Order",
+    projectType: "OUTSOURCE",
+    location: {
+        country: "Portugal",
+        city: "Porto",
+        address: "Rua do Campo Alegre",
+    },
+    contributors: [userNo1, userNo2],
+};
+const mpProject = {
+    projectName: "My Place",
+    projectType: "OUTSOURCE",
+    location: {
+        country: "Portugal",
+        city: "Porto",
+        address: "Rua da Torrinha",
+    },
+    contributors: [userNo3, userNo4],
+};
+const projects = [nwoProject, mpProject];
+console.log(projects);
+const addItemToChart = (product) => {
+    console.log(product);
+    console.log(product.productPrice);
+};
+addItemToChart({
+    productName: "Equipment Box",
+    productPrice: 89.99,
+});
+const carNo10 = {
+    brand: "VW",
+    model: "Gold",
+    engine: "Diesel",
+    color: "Dark Blue",
+    year: 2012,
+    price: 7800,
+};
+const carNo20 = {
+    brand: "Skoda",
+    model: "Octavia",
+    engine: "Diesel",
+    color: "Silver",
+    year: 2014,
+    price: 8800,
+};
+const getACar = (car, car2) => {
+    console.log(car, car2);
+    console.log(car.price);
+    console.log(car2.price);
+};
+getACar(carNo10, carNo20);
+const modemNo1 = {
+    id: "uayvw6127",
+    charger: {
+        power: 150,
+        port: "ChamDo",
+    },
+    location: {
+        address: "Street 123",
+        city: "London",
+    },
+};
+const getModem = (modem) => {
+    console.log(modem);
+};
+getModem(modemNo1);

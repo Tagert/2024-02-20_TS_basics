@@ -123,3 +123,165 @@ console.log(carNo1.format());
 console.log(houseNo1);
 console.log(houseNo1.format());
 console.log(siteNo1.getSquarePerMeter());
+
+// types in TS
+
+// part1 practice
+type LocationType = {
+  country: string;
+  city: string;
+  address: string;
+};
+
+type UserType = {
+  userName: string;
+  userLocation: string;
+  userAge: number;
+};
+
+type ProjectType = {
+  projectName: string;
+  projectType: "IN_HOUSE" | "OUTSOURCE";
+  location: LocationType;
+  contributors: UserType[];
+};
+
+const userNo1: UserType = {
+  userName: "Michael",
+  userLocation: "Porto",
+  userAge: 29,
+};
+
+const userNo2: UserType = {
+  userName: "Pedro",
+  userLocation: "Santo Tirsa",
+  userAge: 32,
+};
+
+const userNo3: UserType = {
+  userName: "Andrea",
+  userLocation: "Santo Tirsa",
+  userAge: 27,
+};
+
+const userNo4: UserType = {
+  userName: "Alex",
+  userLocation: "Porto",
+  userAge: 31,
+};
+
+const nwoProject: ProjectType = {
+  projectName: "New World Order",
+  projectType: "OUTSOURCE",
+  location: {
+    country: "Portugal",
+    city: "Porto",
+    address: "Rua do Campo Alegre",
+  },
+  contributors: [userNo1, userNo2],
+};
+
+const mpProject: ProjectType = {
+  projectName: "My Place",
+  projectType: "OUTSOURCE",
+  location: {
+    country: "Portugal",
+    city: "Porto",
+    address: "Rua da Torrinha",
+  },
+  contributors: [userNo3, userNo4],
+};
+
+const projects: ProjectType[] = [nwoProject, mpProject];
+
+console.log(projects);
+
+// part2 practice
+
+type ItemBuyingType = {
+  productName: string;
+  productPrice: number;
+};
+
+const addItemToChart = (product: ItemBuyingType) => {
+  console.log(product);
+  console.log(product.productPrice);
+};
+
+addItemToChart({
+  productName: "Equipment Box",
+  productPrice: 89.99,
+});
+
+// part3 practice
+
+interface Car {
+  brand: string;
+  model: string;
+  engine: string;
+  color: string;
+  year: number;
+  price: number;
+}
+
+const carNo10: Car = {
+  brand: "VW",
+  model: "Gold",
+  engine: "Diesel",
+  color: "Dark Blue",
+  year: 2012,
+  price: 7800,
+};
+
+const carNo20: Car = {
+  brand: "Skoda",
+  model: "Octavia",
+  engine: "Diesel",
+  color: "Silver",
+  year: 2014,
+  price: 8800,
+};
+
+const getACar = (car: Car, car2: Car): void => {
+  console.log(car, car2);
+  console.log(car.price);
+  console.log(car2.price);
+};
+
+getACar(carNo10, carNo20);
+
+// part4 practice
+
+interface Modem {
+  id: string;
+  charger: Charger;
+  location: Locations;
+}
+
+type Charger = {
+  power: number;
+  port: string;
+};
+
+type Locations = {
+  address: string;
+  city: string;
+};
+
+const modemNo1 = {
+  id: "uayvw6127",
+  charger: {
+    power: 150,
+    port: "ChamDo",
+  },
+  location: {
+    address: "Street 123",
+    city: "London",
+  },
+};
+
+const getModem = (modem: Modem) => {
+  console.log(modem);
+};
+
+getModem(modemNo1);
