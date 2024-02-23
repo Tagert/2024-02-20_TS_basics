@@ -285,3 +285,100 @@ const getModem = (modem: Modem) => {
 };
 
 getModem(modemNo1);
+
+//OMIT method in TS
+
+type BookType = {
+  title: string;
+  author: string;
+  format: "Hardcover" | "Softcover" | "E-book";
+  genres: string[];
+  description: string;
+  price: number;
+  firstPublished: number;
+  id: number;
+};
+
+type BookCreationType = Omit<BookType, "id">;
+
+let bookNo1: BookCreationType = {
+  title: "Metro 2033",
+  author: "Dmitry Glukhovsky",
+  format: "E-book",
+  genres: ["Post Apocalyptic", "Dystopia", "Science Fiction", "Horror"],
+  description:
+    "The year is 2033. The world has been reduced to rubble. Humanity is nearly extinct.",
+  price: 9.59,
+  firstPublished: 2002,
+};
+
+let bookNo2: BookCreationType = {
+  title: "Roadside Picnic",
+  author: "Arkady Strugatsky, Boris Strugatsky",
+  format: "E-book",
+  genres: ["Dystopia", "Science Fiction", "Novel", "Classic"],
+  description:
+    "Red Schuhart is a stalker, one of those young rebels who are compelled, in spite of extreme danger, to venture illegally into the Zone to collect the mysterious artifacts that the alien visitors left scattered around.",
+  price: 9.99,
+  firstPublished: 1972,
+};
+
+console.log(bookNo1);
+
+//track a type in TS
+
+type BookUniqueType = {
+  id: BookType["id"];
+};
+
+const bookUniqueIdNo1 = {
+  id: 1,
+};
+
+//PICK method in TS
+
+type BookTitleType = Pick<BookType, "title" | "author">;
+
+const bookTitleNo1: BookTitleType = {
+  title: "Metro 2033",
+  author: "Dmitry Glukhovsky",
+};
+
+// PARTIAL (update your object) method in TS
+
+type BookRatingType = {
+  rating: number;
+  moreInfo: string;
+};
+
+type BookUpdateType = Partial<BookRatingType>;
+
+const bookRatingNo1: BookUpdateType = {
+  rating: 4.02,
+  moreInfo: "https://www.goodreads.com/book/show/17274667-metro-2033",
+};
+
+const bookRatingNo2: BookUpdateType = {
+  rating: 4.15,
+  moreInfo: "https://www.goodreads.com/book/show/331256.Roadside_Picnic",
+};
+
+bookNo1 = { ...bookNo1, ...bookRatingNo1 };
+bookNo2 = { ...bookNo2, ...bookRatingNo2 };
+
+const getABook = (bookNo1: object, bookNo2: object): object[] => {
+  let bookLists = [];
+
+  bookLists.push(bookNo1);
+  bookLists.push(bookNo2);
+
+  return bookLists;
+};
+
+const bookLists = getABook(bookNo1, bookNo2);
+
+console.log(bookLists);
+
+const bookListNumber: number = (bookLists as []).length;
+
+console.log(bookListNumber);

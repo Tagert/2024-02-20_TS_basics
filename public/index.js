@@ -157,3 +157,49 @@ const getModem = (modem) => {
     console.log(modem);
 };
 getModem(modemNo1);
+let bookNo1 = {
+    title: "Metro 2033",
+    author: "Dmitry Glukhovsky",
+    format: "E-book",
+    genres: ["Post Apocalyptic", "Dystopia", "Science Fiction", "Horror"],
+    description: "The year is 2033. The world has been reduced to rubble. Humanity is nearly extinct.",
+    price: 9.59,
+    firstPublished: 2002,
+};
+let bookNo2 = {
+    title: "Roadside Picnic",
+    author: "Arkady Strugatsky, Boris Strugatsky",
+    format: "E-book",
+    genres: ["Dystopia", "Science Fiction", "Novel", "Classic"],
+    description: "Red Schuhart is a stalker, one of those young rebels who are compelled, in spite of extreme danger, to venture illegally into the Zone to collect the mysterious artifacts that the alien visitors left scattered around.",
+    price: 9.99,
+    firstPublished: 1972,
+};
+console.log(bookNo1);
+const bookUniqueIdNo1 = {
+    id: 1,
+};
+const bookTitleNo1 = {
+    title: "Metro 2033",
+    author: "Dmitry Glukhovsky",
+};
+const bookRatingNo1 = {
+    rating: 4.02,
+    moreInfo: "https://www.goodreads.com/book/show/17274667-metro-2033",
+};
+const bookRatingNo2 = {
+    rating: 4.15,
+    moreInfo: "https://www.goodreads.com/book/show/331256.Roadside_Picnic",
+};
+bookNo1 = Object.assign(Object.assign({}, bookNo1), bookRatingNo1);
+bookNo2 = Object.assign(Object.assign({}, bookNo2), bookRatingNo2);
+const getABook = (bookNo1, bookNo2) => {
+    let bookLists = [];
+    bookLists.push(bookNo1);
+    bookLists.push(bookNo2);
+    return bookLists;
+};
+const bookLists = getABook(bookNo1, bookNo2);
+console.log(bookLists);
+const bookListNumber = bookLists.length;
+console.log(bookListNumber);
