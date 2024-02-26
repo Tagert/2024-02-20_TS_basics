@@ -22,4 +22,75 @@ body {
 
 h1 {
   text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.container .inputs-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 12rem;
+  margin-top: 4rem;
+}
+.container .inputs-box .input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.container .inputs-box label {
+  font-size: 0.9rem;
+}
+.container .inputs-box input {
+  border: 0.1rem solid black;
+  border-radius: 0.2rem;
+  outline: none;
+  padding: 0.3rem;
+}
+.container .inputs-box button {
+  font-size: 0.9rem;
+  border: 0.1rem solid #4c701b;
+  border-radius: 0.2rem;
+  margin-top: 1rem;
+  padding: 0.3rem;
+  color: #4c701b;
+  background-color: transparent;
+  cursor: pointer;
+}
+.container .inputs-box button:hover {
+  background-color: #f6fce9;
+  font-weight: 700;
+}
+.container .inputs-box .status-message p {
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+}
+.container .inputs-box .status-message .error {
+  color: red;
+}
+.container .inputs-box .status-message .success {
+  color: green;
+}
+.container .duplicate-text {
+  display: flex;
+  flex-direction: column;
+  width: 12rem;
+  margin-top: 4rem;
+  gap: 0.4rem;
+}
+.container .duplicate-text label {
+  font-size: 0.9rem;
+}
+.container .duplicate-text input {
+  border: 0.1rem solid black;
+  border-radius: 0.2rem;
+  outline: none;
+  padding: 0.3rem;
+}
+.container .duplicate-text p {
+  font-size: 0.8rem;
 }/*# sourceMappingURL=style.css.map */

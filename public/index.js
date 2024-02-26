@@ -203,3 +203,70 @@ const bookLists = getABook(bookNo1, bookNo2);
 console.log(bookLists);
 const bookListNumber = bookLists.length;
 console.log(bookListNumber);
+// TS task 1 related with a HTML elements
+let usersData = [];
+const userNameInput = document.getElementById("userName");
+const userLastNameInput = document.getElementById("userLastName");
+const userAgeInput = document.getElementById("userAge");
+const userButton = document.getElementById("userButton");
+const statusMessage = document.getElementById("status");
+// testing key in keyof functionality
+const userStringified = {
+    userName: userNameInput.value,
+    userLastName: userLastNameInput.value,
+    userAge: userAgeInput.value,
+};
+const storeUsersInfo = () => {
+    const userInfoValue = {
+        userName: userNameInput.value,
+        userLastName: userLastNameInput.value,
+        userAge: Number(userAgeInput.value),
+    };
+    statusMessage.classList.remove("success");
+    statusMessage.classList.remove("error");
+    if (userNameInput.value === null &&
+        userLastNameInput.value === null &&
+        userAgeInput.value === null) {
+        statusMessage.innerText = "Please fill out all fields";
+        statusMessage.classList.add("error");
+    }
+    else if (userNameInput.value.length <= 3 &&
+        userLastNameInput.value.length <= 3) {
+        statusMessage.innerText =
+            "Name or Last name should contain at least 3 letters";
+        statusMessage.classList.add("error");
+    }
+    else if (userAgeInput.value === null) {
+        statusMessage.innerText = "Please fill out your age";
+        statusMessage.classList.add("error");
+    }
+    else if (userInfoValue.userAge < 16 || userInfoValue.userAge > 95) {
+        statusMessage.innerText = "Your age should be more than 15 years";
+        statusMessage.classList.add("error");
+    }
+    else {
+        usersData.push(userInfoValue);
+        statusMessage.innerText = "Successful added";
+        statusMessage.classList.add("success");
+        setTimeout(() => {
+            userNameInput.value = "";
+            userLastNameInput.value = "";
+            userAgeInput.value = "";
+            statusMessage.innerText = "";
+        }, 2500);
+    }
+    console.log(usersData);
+};
+userButton.addEventListener("click", storeUsersInfo);
+//duplicate text
+const duplicateInput = document.querySelector("#duplicateInput");
+const result = document.querySelector("#result");
+if (duplicateInput === null)
+    throw new Error("Insert text");
+if (result === null)
+    throw new Error("Not text");
+const handleFieldChange = (event) => {
+    const element = event.target;
+    result.innerHTML = element.value;
+};
+duplicateInput.addEventListener("keyup", handleFieldChange);

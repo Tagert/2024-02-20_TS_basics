@@ -8,6 +8,46 @@
   </head>
   <body>
     <h1>Hello world!</h1>
+    <div class="container">
+      <div class="inputs-box">
+        <div class="user-name input">
+          <label for="userName">Name:</label>
+          <input
+            id="userName"
+            type="text"
+            placeholder="Your name"
+            autocomplete="name"
+          />
+        </div>
+
+        <div class="user-lastname input">
+          <label for="userLastName">Last name:</label>
+          <input id="userLastName" type="text" placeholder="Your last name" />
+        </div>
+
+        <div class="user-age input">
+          <label for="userAge">Age:</label>
+          <input
+            id="userAge"
+            type="number"
+            placeholder="Your age"
+            min="16"
+            max="95"
+          />
+        </div>
+
+        <button id="userButton">Click me</button>
+        <div class="status-message">
+          <p id="status"></p>
+        </div>
+      </div>
+
+      <div class="duplicate-text">
+        <label for="duplicateInput">Duplicate your text:</label>
+        <input id="duplicateInput" type="text" placeholder="Duplicate" />
+        <p id="result"></p>
+      </div>
+    </div>
 
     <script src="./index.js"></script>
   </body>

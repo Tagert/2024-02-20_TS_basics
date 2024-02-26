@@ -382,3 +382,109 @@ console.log(bookLists);
 const bookListNumber: number = (bookLists as []).length;
 
 console.log(bookListNumber);
+
+// TS task 1 related with a HTML elements
+
+let usersData: object[] = [];
+
+type UserInputType = {
+  userName: string;
+  userLastName: string;
+  userAge: number;
+};
+
+// testing key in keyof functionality
+type UserPartial = {
+  [key in keyof UserInputType]: string;
+};
+
+const userNameInput: HTMLInputElement = document.getElementById(
+  "userName"
+) as HTMLInputElement;
+const userLastNameInput: HTMLInputElement = document.getElementById(
+  "userLastName"
+) as HTMLInputElement;
+const userAgeInput: HTMLInputElement = document.getElementById(
+  "userAge"
+) as HTMLInputElement;
+
+const userButton: HTMLButtonElement = document.getElementById(
+  "userButton"
+) as HTMLButtonElement;
+const statusMessage: HTMLParagraphElement = document.getElementById(
+  "status"
+) as HTMLParagraphElement;
+
+// testing key in keyof functionality
+const userStringified: UserPartial = {
+  userName: userNameInput.value,
+  userLastName: userLastNameInput.value,
+  userAge: userAgeInput.value,
+};
+
+const storeUsersInfo: EventListener = () => {
+  const userInfoValue: UserInputType = {
+    userName: userNameInput.value,
+    userLastName: userLastNameInput.value,
+    userAge: Number(userAgeInput.value),
+  };
+
+  statusMessage.classList.remove("success");
+  statusMessage.classList.remove("error");
+
+  if (
+    userNameInput.value === null &&
+    userLastNameInput.value === null &&
+    userAgeInput.value === null
+  ) {
+    statusMessage.innerText = "Please fill out all fields";
+    statusMessage.classList.add("error");
+  } else if (
+    userNameInput.value.length <= 3 &&
+    userLastNameInput.value.length <= 3
+  ) {
+    statusMessage.innerText =
+      "Name or Last name should contain at least 3 letters";
+    statusMessage.classList.add("error");
+  } else if (userAgeInput.value === null) {
+    statusMessage.innerText = "Please fill out your age";
+    statusMessage.classList.add("error");
+  } else if (userInfoValue.userAge < 16 || userInfoValue.userAge > 95) {
+    statusMessage.innerText = "Your age should be more than 15 years";
+    statusMessage.classList.add("error");
+  } else {
+    usersData.push(userInfoValue);
+
+    statusMessage.innerText = "Successful added";
+    statusMessage.classList.add("success");
+    setTimeout(() => {
+      userNameInput.value = "";
+      userLastNameInput.value = "";
+      userAgeInput.value = "";
+      statusMessage.innerText = "";
+    }, 2500);
+  }
+
+  console.log(usersData);
+};
+
+userButton.addEventListener("click", storeUsersInfo);
+
+//duplicate text
+
+const duplicateInput: HTMLInputElement = document.querySelector(
+  "#duplicateInput"
+) as HTMLInputElement;
+const result: HTMLParagraphElement = document.querySelector(
+  "#result"
+) as HTMLParagraphElement;
+
+if (duplicateInput === null) throw new Error("Insert text");
+if (result === null) throw new Error("Not text");
+
+const handleFieldChange: EventListener = (event) => {
+  const element: HTMLInputElement = event.target as HTMLInputElement;
+  result.innerHTML = element.value;
+};
+
+duplicateInput.addEventListener("keyup", handleFieldChange);
